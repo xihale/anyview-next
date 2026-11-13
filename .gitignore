@@ -1,0 +1,17 @@
+node_modules/
+.nuxt/
+.output/
+dist
+relay/relay
+relay/relay.exe
+relay-state.json
+state.json
+anyview-next-state.json
+relay-cache.json
+*.json.tmp
+*.log
+.DS_Store
+relay/tmp/
+.mimosa/
+audit-context/
+web/.impeccable/

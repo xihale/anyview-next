@@ -1,0 +1,27 @@
+# air 热重载配置（make dev 使用）
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/relay ."
+  bin = "./tmp/relay"
+  # 复用真实 token 状态文件：热重载/重启不再重登（重登会踢掉网页端 AnyView 会话）。
+  # 首次没有该文件时在页面里登录一次即可，之后落盘复用。可用 make relay-mock 走假上游。
+  full_bin = "./tmp/relay -state /tmp/anyview-next-state.json"
+  include_ext = ["go"]
+  exclude_dir = ["tmp"]
+  exclude_regex = ["_test\\.go"]
+  delay = 800
+  stop_on_error = true
+  send_interrupt = true
+  kill_delay = "2s"
+  log = "build-errors.log"
+
+[log]
+  time = true
+
+[misc]
+  clean_on_exit = true
+
+[screen]
+  clear_on_rebuild = false
